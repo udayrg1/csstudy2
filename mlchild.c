@@ -15,32 +15,34 @@ int main()
 if (pid == 0) { // child process return to zero
                  
 	       
-	        printf("child[1] --> pid = %d and ppid = %d\n",
+	        printf("I'm child[1] and my  pid is %d and my parent ppid = %d\n",
 			getpid(), getppid());
 		read(fda, buf, 1000);
-		printf("read data is %s\n", buf);
+		printf("child 1 read data is %s\n", buf);
 	}
 
 	else {
 		pid1 = fork();
 		if (pid1 == 0) {
-				printf("child[2] --> pid = %d and ppid = %d\n",
+			        sleep(5);
+				printf("I'm child[2] and my  pid is %d and my parent ppid = %d\n",
 				getpid(), getppid());
-			
+			       
 				read(fda, buf, 1000);
-                                printf("read data is %s\n", buf);
+                                printf("child 2 read data is %s\n", buf);
 		}
 		else {
 			pid2 = fork();
 			if (pid2 == 0) {
-				printf("child[3] --> pid = %d and ppid = %d\n",
+				sleep(10);
+				printf("I'm child[3] and my  pid is %d and my parent ppid = %d\n",
 					getpid(), getppid());
-				
+                               
                                 read(fda, buf, 1000);
-                                printf("read data is %s\n", buf);
+                                printf("child 3 read data is %s\n", buf);
 			}
 			else {
-				sleep(10);
+				sleep(12);
 				printf("parent --> pid = %d\n", getpid()); // parent process
 			}
 		}
